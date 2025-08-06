@@ -38,5 +38,6 @@ public class User {
     @Column(name = "fruit", nullable = false)
     private Integer fruit;
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Item> items = new ArrayList<>();
 }

@@ -35,4 +35,11 @@ public class UserController {
         UserResponse userResponse = userService.updateUserByUsername(username, userRequest);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<UserResponse> deleteByUsername(@PathVariable String username) {
+        userService.deleteByUsername(username);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

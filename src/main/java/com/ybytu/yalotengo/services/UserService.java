@@ -7,6 +7,7 @@ import com.ybytu.yalotengo.exceptions.UserNotFoundException;
 import com.ybytu.yalotengo.models.User;
 import com.ybytu.yalotengo.repositories.ItemRepository;
 import com.ybytu.yalotengo.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,5 +41,11 @@ public class UserService {
         existingUser.setPassword(userRequest.password());
         User updatedUser = userRepository.save(existingUser);
         return UserMapper.entitytoDto(updatedUser);
+    }
+
+    @Transactional
+    public void deleteByUsername(String username){
+        findByUsername(username);
+        userRepository.deleteByUsername(username);
     }
 }

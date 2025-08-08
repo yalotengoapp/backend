@@ -15,7 +15,7 @@ public class UserMapper {
                 dto.email(),
                 dto.password(),
                 Role.valueOf(dto.role()),
-                dto.fruit(),
+                3,
                 new ArrayList<>()
         );
     }

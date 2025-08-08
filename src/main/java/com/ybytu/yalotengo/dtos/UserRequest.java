@@ -20,10 +20,6 @@ public record UserRequest (
     String password,
 
     @NotNull(message = "Role required")
-    String role,
-
-    @NotNull
-    Integer fruit
-
+    String role
 ){
 }

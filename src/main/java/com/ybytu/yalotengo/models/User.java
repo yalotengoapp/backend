@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
-
-import com.ybytu.yalotengo.models.Role;
 import java.util.ArrayList;
 import java.util.List;
 

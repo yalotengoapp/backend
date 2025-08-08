@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
-import com.ybytu.yalotengo.models.Role;
+//import com.ybytu.yalotengo.models.Role;
+import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.List;
 

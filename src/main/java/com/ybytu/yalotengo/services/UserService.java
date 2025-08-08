@@ -31,4 +31,14 @@ public class UserService {
             .orElseThrow(() -> new UserNotFoundException("User not found: " +  username));
     return UserMapper.entitytoDto(user);
     }
+
+    public UserResponse updateUserByUsername(String username, UserRequest userRequest){
+        User existingUser = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("User with username: " + username + "not found"));
+        existingUser.setUsername(userRequest.username());
+        existingUser.setEmail(userRequest.email());
+        existingUser.setPassword(userRequest.password());
+        User updatedUser = userRepository.save(existingUser);
+        return UserMapper.entitytoDto(updatedUser);
+    }
 }

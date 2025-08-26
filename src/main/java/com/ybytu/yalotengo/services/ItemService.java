@@ -45,4 +45,20 @@ public class ItemService {
 
         return ItemMapper.entityToDto(savedItem);
     }
+
+    public ItemResponse updateItem(Long id, ItemRequest itemRequest, String username) {
+
+        List<Item> itemsByUsername = itemRepository.findByUserUsername(username);
+
+        Item existingItem = itemsByUsername.stream().filter(item -> item.getId().equals(id)).findFirst().orElseThrow(() -> new ItemNotFoundException("Item with id :" + id + "does not belong to user " + username));
+
+        existingItem.setTitle(itemRequest.title());
+        existingItem.setDescription(itemRequest.description());
+        existingItem.setItemCondition(itemRequest.itemCondition());
+        existingItem.setType(itemRequest.type());
+        existingItem.setImgUrl(itemRequest.imgUrl());
+
+        Item updatedItem = itemRepository.save(existingItem);
+        return ItemMapper.entityToDto(updatedItem);
+    }
 }

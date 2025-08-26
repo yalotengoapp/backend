@@ -61,4 +61,10 @@ public class ItemService {
         Item updatedItem = itemRepository.save(existingItem);
         return ItemMapper.entityToDto(updatedItem);
     }
+
+    public void deleteItem(Long id, String username) {
+        List<Item> itemByUsername = itemRepository.findByUserUsername(username);
+
+        Item existingItem = itemByUsername.stream().filter(item -> item.getId().equals(id)).findFirst().orElseThrow(() -> new ItemNotFoundException("Item with id " + id + "does not belong to user " + username));
+    }
 }

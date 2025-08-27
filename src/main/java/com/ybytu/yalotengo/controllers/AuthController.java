@@ -1,6 +1,7 @@
 package com.ybytu.yalotengo.controllers;
 
 import com.ybytu.yalotengo.dtos.JwtResponse;
+import com.ybytu.yalotengo.dtos.LoginRequest;
 import com.ybytu.yalotengo.dtos.UserRequest;
 import com.ybytu.yalotengo.dtos.UserResponse;
 import com.ybytu.yalotengo.security.UserDetail;
@@ -38,11 +39,10 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtResponse> login(@RequestBody UserRequest userRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.username(),userRequest.password()));
+    public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken( loginRequest.username(),loginRequest.password()));
 
         UserDetail userDetail = (UserDetail) authentication.getPrincipal();
-
         String token = jwtService.generateToken(userDetail);
         JwtResponse jwtResponse = new JwtResponse(token);
         return new ResponseEntity<>(jwtResponse, HttpStatus.OK);

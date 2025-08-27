@@ -14,7 +14,7 @@ public class UserMapper {
                 dto.username(),
                 dto.email(),
                 dto.password(),
-                Role.valueOf(dto.role()),
+                Role.valueOf(dto.role().replace("ROLE_", "")),
                 3,
                 new ArrayList<>()
         );

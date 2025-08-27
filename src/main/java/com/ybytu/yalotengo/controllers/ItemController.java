@@ -5,11 +5,14 @@ import com.ybytu.yalotengo.dtos.ItemResponse;
 import com.ybytu.yalotengo.dtos.UserResponse;
 import com.ybytu.yalotengo.models.Item;
 import com.ybytu.yalotengo.models.User;
+import com.ybytu.yalotengo.security.UserDetail;
 import com.ybytu.yalotengo.services.ItemService;
 import com.ybytu.yalotengo.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,10 +40,9 @@ public class ItemController {
 //}
 
     @PostMapping
-    public ResponseEntity<ItemResponse> addItem(@Valid @RequestBody ItemRequest itemRequest) {
-        String username = itemRequest.username();
-        ItemResponse itemResponse = itemService.addItem(itemRequest, username);
-        return new ResponseEntity<>( itemResponse,  HttpStatus.CREATED);
+    public ResponseEntity<ItemResponse> addItem(@Valid @RequestBody ItemRequest itemRequest, @AuthenticationPrincipal UserDetail userDetail) {
+        ItemResponse itemResponse = itemService.addItem(itemRequest, userDetail.getUsername());
+        return new ResponseEntity<>( itemResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

@@ -19,7 +19,6 @@ public record UserRequest (
             regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=.])(?=\\S+$).{12,}$")
     String password,
 
-    @NotNull(message = "Role required")
     String role
 ){
 }

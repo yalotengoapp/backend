@@ -35,7 +35,7 @@ public class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        user = new User(1L, "Rafiki", "rafiki@lionking.com", "Forest#54321@", Role.USER, Integer.valueOf(3), new ArrayList<>());
+        user = new User(1L, "Rafiki", "rafiki@lionking.com", "Forest#54321@", Role.ROLE_USER, Integer.valueOf(3), new ArrayList<>());
     }
 
     @Test

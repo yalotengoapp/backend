@@ -31,6 +31,7 @@ public record ItemRequest(
         @Max(value = 5, message = "Points/fruits must be at most 5")
         String fruitsRequired,
 
+        @NotBlank(message = "Username required")
         String username
 ) {
 }

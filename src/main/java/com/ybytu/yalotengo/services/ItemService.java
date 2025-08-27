@@ -37,8 +37,9 @@ public class ItemService {
 //    return ItemMapper.entityToDto(item);
 //    }
 
-    public ItemResponse addItem(ItemRequest itemRequest, String username){
-        User foundUser = userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User " + username + "not found"));
+    public ItemResponse addItem(ItemRequest itemRequest, String username) {
+        User foundUser = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("User " + username + "not found"));
 
         Item newItem = ItemMapper.dtoToEntity(itemRequest, foundUser);
         Item savedItem = itemRepository.save(newItem);

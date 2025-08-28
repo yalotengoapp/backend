@@ -13,12 +13,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static com.ybytu.yalotengo.models.Role.ADMIN;
+import static org.hibernate.cfg.JdbcSettings.USER;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -28,6 +30,9 @@ public class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    private BCryptPasswordEncoder passwordEncoder;
+
     @InjectMocks
     private UserService userService;
 
@@ -35,7 +40,7 @@ public class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        user = new User(1L, "Rafiki", "rafiki@lionking.com", "Forest#54321@", Role.ROLE_USER, Integer.valueOf(3), new ArrayList<>());
+        user = new User(1L, "Rafiki", "rafiki@lionking.com", "Forest#54321@", Role.USER, Integer.valueOf(3), new ArrayList<>());
     }
 
     @Test
@@ -52,9 +57,10 @@ public class UserServiceTest {
 
     @Test
     void updateUser_updatesUserSuccessfully() {
-        UserRequest request = new UserRequest("RafikiUpdated", "rafikiupdated@lionking.com", "#Newpass1234", Role.USER.name());
+        UserRequest request = new UserRequest("RafikiUpdated", "rafikiupdated@lionking.com", "#Newpass1234", USER);
 
         when(userRepository.findByUsername("Rafiki")).thenReturn(Optional.of(user));
+        when(passwordEncoder.encode(anyString())).thenReturn("encoded_password");
         when(userRepository.save(any(User.class))).thenReturn(user);
 
 
@@ -63,8 +69,9 @@ public class UserServiceTest {
         assertEquals("RafikiUpdated", result.username());
         assertEquals("rafikiupdated@lionking.com", result.email());
         assertEquals(Role.USER, result.role());
+        assertEquals("encoded_password", user.getPassword());
 
-        verify(userRepository).save(any(User.class));
+        verify(userRepository).save(user);
     }
 
     @Test

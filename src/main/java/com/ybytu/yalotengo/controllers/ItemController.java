@@ -52,7 +52,8 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable Long id, User user){
+    public ResponseEntity<Void> deleteItem(@PathVariable Long id, @AuthenticationPrincipal UserDetail user){
+        String username = user.getUsername();
         itemService.deleteItem(id, user.getUsername());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

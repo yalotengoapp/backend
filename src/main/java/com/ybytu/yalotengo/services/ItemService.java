@@ -67,5 +67,6 @@ public class ItemService {
         List<Item> itemByUsername = itemRepository.findByUserUsername(username);
 
         Item existingItem = itemByUsername.stream().filter(item -> item.getId().equals(id)).findFirst().orElseThrow(() -> new ItemNotFoundException("Item with id " + id + "does not belong to user " + username));
+        itemRepository.delete(existingItem);
     }
 }

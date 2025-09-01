@@ -1,5 +1,4 @@
-package com.ybytu.yalotengo.user;
-import com.ybytu.yalotengo.controllers.UserController;
+package com.ybytu.yalotengo.services;
 import com.ybytu.yalotengo.dtos.UserMapper;
 import com.ybytu.yalotengo.dtos.UserRequest;
 import com.ybytu.yalotengo.dtos.UserResponse;
@@ -8,7 +7,6 @@ import com.ybytu.yalotengo.models.Role;
 import com.ybytu.yalotengo.models.User;
 import com.ybytu.yalotengo.repositories.UserRepository;
 import com.ybytu.yalotengo.repositories.ItemRepository;
-import com.ybytu.yalotengo.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

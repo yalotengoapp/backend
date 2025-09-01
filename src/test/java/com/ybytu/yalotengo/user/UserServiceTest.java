@@ -1,5 +1,5 @@
 package com.ybytu.yalotengo.user;
-
+import com.ybytu.yalotengo.dtos.UserMapper;
 import com.ybytu.yalotengo.dtos.UserRequest;
 import com.ybytu.yalotengo.dtos.UserResponse;
 import com.ybytu.yalotengo.exceptions.UserNotFoundException;
@@ -13,28 +13,24 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-
-import static com.ybytu.yalotengo.models.Role.ADMIN;
 import static org.hibernate.cfg.JdbcSettings.USER;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
+    @InjectMocks
+    private UserService userService;
 
     @Mock
     private UserRepository userRepository;
 
     @Mock
     private BCryptPasswordEncoder passwordEncoder;
-
-    @InjectMocks
-    private UserService userService;
 
     private User user;
 
@@ -56,6 +52,19 @@ public class UserServiceTest {
     }
 
     @Test
+    public void testSaveUser() {
+        UserRequest request = new UserRequest("Rafiki", "rafiki@lionking.com", "Forest#54321@", "USER");
+        User newUser = UserMapper.dtoToEntity(request);
+        when(userRepository.save(any(User.class))).thenReturn(newUser);
+        UserResponse savedUser = userService.addUser(request);
+        assertNotNull(savedUser);
+        assertEquals("Rafiki", savedUser.username());
+        assertEquals("rafiki@lionking.com", savedUser.email());
+        assertEquals(Role.USER, savedUser.role());
+
+    }
+
+        @Test
     void updateUser_updatesUserSuccessfully() {
         UserRequest request = new UserRequest("RafikiUpdated", "rafikiupdated@lionking.com", "#Newpass1234", USER);
 

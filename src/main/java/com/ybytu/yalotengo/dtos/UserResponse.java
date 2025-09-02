@@ -1,7 +1,5 @@
 package com.ybytu.yalotengo.dtos;
-
 import com.ybytu.yalotengo.models.Role;
-
 import java.util.List;
 
 public record UserResponse(

@@ -6,10 +6,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
-
 import javax.crypto.SecretKey;
 import java.util.Date;
-//it's usually not pushed to Git
+
 @Service
 public class JwtService {
     private final String JWT_SECRET_KEY = "mySecretKeyForJWTTokenGenerationThatIsAtLeast256BitsLong";
@@ -18,7 +17,6 @@ public class JwtService {
     public String generateToken(UserDetail userDetail) {
         return buildToken(userDetail, JWT_EXPIRATION);
     }
-
 
     private String buildToken(UserDetail userDetail, long jwtExpiration) {
         return Jwts

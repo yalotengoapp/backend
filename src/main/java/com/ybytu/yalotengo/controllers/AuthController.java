@@ -1,5 +1,4 @@
 package com.ybytu.yalotengo.controllers;
-
 import com.ybytu.yalotengo.dtos.JwtResponse;
 import com.ybytu.yalotengo.dtos.LoginRequest;
 import com.ybytu.yalotengo.dtos.UserRequest;
@@ -46,7 +45,6 @@ public class AuthController {
         String token = jwtService.generateToken(userDetail);
         JwtResponse jwtResponse = new JwtResponse(token);
         return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
-
 
     }
 }

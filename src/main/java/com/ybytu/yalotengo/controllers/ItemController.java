@@ -1,5 +1,4 @@
 package com.ybytu.yalotengo.controllers;
-
 import com.ybytu.yalotengo.dtos.ItemRequest;
 import com.ybytu.yalotengo.dtos.ItemResponse;
 import com.ybytu.yalotengo.dtos.UserResponse;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -32,12 +30,6 @@ public class ItemController {
         List<ItemResponse> items = itemService.getAllItems();
         return new ResponseEntity<>(items, HttpStatus.OK);
 }
-
-//  @GetMapping("/items/{id}")
-//   public ResponseEntity<ItemResponse> getItemById(@PathVariable Long id) {
-//   ItemResponse itemResponse = itemService.getItemById(id);
-//   return new ResponseEntity<>(itemResponse, HttpStatus.OK);
-//}
 
     @PostMapping
     public ResponseEntity<ItemResponse> addItem(@Valid @RequestBody ItemRequest itemRequest, @AuthenticationPrincipal UserDetail userDetail) {

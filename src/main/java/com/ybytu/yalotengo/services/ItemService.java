@@ -1,9 +1,7 @@
 package com.ybytu.yalotengo.services;
-
 import com.ybytu.yalotengo.dtos.ItemMapper;
 import com.ybytu.yalotengo.dtos.ItemRequest;
 import com.ybytu.yalotengo.dtos.ItemResponse;
-import com.ybytu.yalotengo.dtos.UserResponse;
 import com.ybytu.yalotengo.exceptions.ItemNotFoundException;
 import com.ybytu.yalotengo.exceptions.UserNotFoundException;
 import com.ybytu.yalotengo.models.Item;
@@ -12,7 +10,6 @@ import com.ybytu.yalotengo.repositories.ItemRepository;
 import com.ybytu.yalotengo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -30,12 +27,6 @@ public class ItemService {
         List<Item> items = itemRepository.findAll();
         return items.stream().map(item -> ItemMapper.entityToDto(item)).toList();
     }
-
-//   public ItemResponse getItemById(Long id, String username) {
-//   Item item = itemRepository.findById(id)
-//   .orElseThrow(() -> new ItemNotFoundException("Item with id" + id + "not found"));
-//    return ItemMapper.entityToDto(item);
-//    }
 
     public ItemResponse addItem(ItemRequest itemRequest, String username) {
         User foundUser = userRepository.findByUsername(username)

@@ -1,5 +1,4 @@
 package com.ybytu.yalotengo.controllers;
-
 import com.ybytu.yalotengo.dtos.JwtResponse;
 import com.ybytu.yalotengo.dtos.LoginRequest;
 import com.ybytu.yalotengo.dtos.UserRequest;
@@ -7,7 +6,6 @@ import com.ybytu.yalotengo.dtos.UserResponse;
 import com.ybytu.yalotengo.security.UserDetail;
 import com.ybytu.yalotengo.security.jwt.JwtService;
 import com.ybytu.yalotengo.services.UserService;
-import io.jsonwebtoken.Jwt;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +44,6 @@ public class AuthController {
         String token = jwtService.generateToken(userDetail);
         JwtResponse jwtResponse = new JwtResponse(token);
         return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
-
 
     }
 }

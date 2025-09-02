@@ -1,7 +1,5 @@
 package com.ybytu.yalotengo.controller;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ybytu.yalotengo.dtos.ItemRequest;
 import com.ybytu.yalotengo.dtos.ItemResponse;
 import com.ybytu.yalotengo.services.ItemService;
 import org.hamcrest.Matchers;
@@ -13,17 +11,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

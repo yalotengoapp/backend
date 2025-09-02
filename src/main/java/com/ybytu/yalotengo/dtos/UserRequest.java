@@ -1,9 +1,5 @@
 package com.ybytu.yalotengo.dtos;
-
-import com.ybytu.yalotengo.models.Role;
 import jakarta.validation.constraints.*;
-
-import javax.management.relation.RoleResult;
 
 public record UserRequest (
     @NotBlank(message = "Username required")

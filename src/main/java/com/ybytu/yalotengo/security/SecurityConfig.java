@@ -1,7 +1,5 @@
 package com.ybytu.yalotengo.security;
-
 import com.ybytu.yalotengo.security.jwt.JwtAuthFilter;
-import org.apache.catalina.filters.HttpHeaderSecurityFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

@@ -1,17 +1,12 @@
 package com.ybytu.yalotengo.controllers;
 import com.ybytu.yalotengo.dtos.ItemRequest;
 import com.ybytu.yalotengo.dtos.ItemResponse;
-import com.ybytu.yalotengo.dtos.UserResponse;
-import com.ybytu.yalotengo.models.Item;
-import com.ybytu.yalotengo.models.User;
 import com.ybytu.yalotengo.security.UserDetail;
 import com.ybytu.yalotengo.services.ItemService;
-import com.ybytu.yalotengo.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -29,7 +24,7 @@ public class ItemController {
     public ResponseEntity<List<ItemResponse>> getAllItems() {
         List<ItemResponse> items = itemService.getAllItems();
         return new ResponseEntity<>(items, HttpStatus.OK);
-}
+    }
 
     @PostMapping
     public ResponseEntity<ItemResponse> addItem(@Valid @RequestBody ItemRequest itemRequest, @AuthenticationPrincipal UserDetail userDetail) {

@@ -1,5 +1,4 @@
 package com.ybytu.yalotengo.security.jwt;
-
 import com.ybytu.yalotengo.security.UserDetail;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

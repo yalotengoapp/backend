@@ -6,7 +6,6 @@ import com.ybytu.yalotengo.dtos.UserResponse;
 import com.ybytu.yalotengo.security.UserDetail;
 import com.ybytu.yalotengo.security.jwt.JwtService;
 import com.ybytu.yalotengo.services.UserService;
-import io.jsonwebtoken.Jwt;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -3,8 +3,6 @@ import com.ybytu.yalotengo.dtos.UserRequest;
 import com.ybytu.yalotengo.dtos.UserResponse;
 import com.ybytu.yalotengo.services.UserService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Request;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,6 @@
 package com.ybytu.yalotengo.dtos;
 import com.ybytu.yalotengo.models.Role;
 import com.ybytu.yalotengo.models.User;
-
 import java.util.ArrayList;
 import java.util.List;
 

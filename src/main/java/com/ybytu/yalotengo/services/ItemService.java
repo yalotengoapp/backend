@@ -39,7 +39,6 @@ public class ItemService {
     }
 
     public ItemResponse updateItem(Long id, ItemRequest itemRequest, String username) {
-
         List<Item> itemsByUsername = itemRepository.findByUserUsername(username);
 
         Item existingItem = itemsByUsername.stream().filter(item -> item.getId().equals(id)).findFirst().orElseThrow(() -> new ItemNotFoundException("Item with id :" + id + "does not belong to user " + username));

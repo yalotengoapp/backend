@@ -77,7 +77,7 @@ public class UserServiceTest {
 
     }
 
-        @Test
+    @Test
     void updateUser_updatesUserSuccessfully() {
         UserRequest request = new UserRequest(
                 "RafikiUpdated",
@@ -88,7 +88,7 @@ public class UserServiceTest {
         when(userRepository.findByUsername("Rafiki")).thenReturn(Optional.of(user));
         when(passwordEncoder.encode(anyString())).thenReturn("encoded_password");
         when(userRepository.save(any(User.class))).thenReturn(user);
-        UserResponse result = userService.updateUserByUsername("Rafiki", request);
+        UserResponse result = userService.updateUserByUsername("Rafiki", request, user.getId());
         assertNotNull(result);
         assertEquals("RafikiUpdated", result.username());
         assertEquals("rafikiupdated@lionking.com", result.email());

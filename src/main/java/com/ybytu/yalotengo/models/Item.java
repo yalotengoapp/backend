@@ -1,5 +1,4 @@
 package com.ybytu.yalotengo.models;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,7 +36,7 @@ public class Item {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    public Item(String title, String description, String type, String condition, String img_url, Integer fruits_required){
+    public Item(String title, String description, String type, String condition){
         this.title = title;
         this.description = description;
         this.type = type;

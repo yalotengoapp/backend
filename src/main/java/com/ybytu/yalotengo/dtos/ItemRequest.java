@@ -1,7 +1,5 @@
 package com.ybytu.yalotengo.dtos;
-
 import jakarta.validation.constraints.*;
-import org.hibernate.internal.util.StringHelper;
 
 public record ItemRequest(
         @NotBlank(message = "Title is required")
@@ -17,7 +15,7 @@ public record ItemRequest(
         String type,
 
         @NotBlank(message = "Item condition is required")
-        @Size(min = 5, max = 200, message = "Item condition must contain between 5 and 200 characters")
+        @Size(min = 3, max = 200, message = "Item condition must contain between 3 and 200 characters")
 
         String itemCondition,
 

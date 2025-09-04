@@ -1,7 +1,5 @@
 package com.ybytu.yalotengo.exceptions;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.time.LocalDateTime;
 
 public class ErrorResponse {
@@ -18,5 +16,4 @@ public class ErrorResponse {
     public void setMessage(String message) { this.message = message; }
     public LocalDateTime getTimestamp() { return timestamp; }
     public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
-
 }

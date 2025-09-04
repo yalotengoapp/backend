@@ -1,6 +1,4 @@
 package com.ybytu.yalotengo.dtos;
-
-import com.fasterxml.jackson.databind.ser.impl.UnknownSerializer;
 import com.ybytu.yalotengo.models.Item;
 import com.ybytu.yalotengo.models.User;
 
@@ -14,7 +12,6 @@ public class ItemMapper{
         item.setImgUrl(dto.imgUrl());
         item.setFruitsRequired(Integer.parseInt(dto.fruitsRequired()));
         item.setUser(user);
-
         return item;
     }
 

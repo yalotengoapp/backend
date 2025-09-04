@@ -1,5 +1,4 @@
 package com.ybytu.yalotengo.services;
-
 import com.ybytu.yalotengo.dtos.UserMapper;
 import com.ybytu.yalotengo.dtos.UserRequest;
 import com.ybytu.yalotengo.dtos.UserResponse;
@@ -14,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -34,15 +34,24 @@ public class UserService implements UserDetailsService {
         return UserMapper.entitytoDto(savedUser);
     }
 
+    public UserResponse findById(@PathVariable Long id, Long userId){
+        User user = userRepository.findById(id)
+                .filter(u -> u.getId().equals(userId))
+                .orElseThrow(() -> new UserNotFoundException("Id not found: " +  id));
+        return UserMapper.entitytoDto(user);
+    }
+
     public UserResponse findByUsername(String username){
     User user = userRepository.findByUsername(username)
+            .filter(u -> u.getUsername().equals(username))
             .orElseThrow(() -> new UserNotFoundException("User not found: " +  username));
     return UserMapper.entitytoDto(user);
     }
 
-    public UserResponse updateUserByUsername(String username, UserRequest userRequest){
+    public UserResponse updateUserByUsername(String username, UserRequest userRequest, Long id){
         User existingUser = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("User with username: " + username + "not found"));
+                .filter(user -> user.getId().equals(id))
+                .orElseThrow(() -> new UserNotFoundException("User with username " + username + " not found or you are not authorized"));
         existingUser.setUsername(userRequest.username());
         existingUser.setEmail(userRequest.email());
         existingUser.setPassword(passwordEncoder.encode(userRequest.password()));

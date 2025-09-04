@@ -1,0 +1,64 @@
+services:
+  yalotengo-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: yalotengo-app
+
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=8080
+      - DB_URL=jdbc:mysql://yalotengo:3306/yalotengo
+      - DB_USER=root
+      - DB_PASSWORD=root
+
+    restart: no
+
+
+    depends_on:
+      yalotengo:
+        condition: service_healthy
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+    networks:
+      - yalotengo-network
+
+  yalotengo:
+    image: mysql:8.0
+
+    container_name: yalotengo
+
+    environment:
+      MYSQL_DATABASE: yalotengo
+      MYSQL_ROOT_PASSWORD: root
+
+    restart: no
+
+
+    healthcheck:
+      test: [
+        "CMD",
+        "mysqladmin",
+        "ping",
+        "-h", "localhost",
+        "-u", "root",
+        "-proot"
+      ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+    networks:
+      - yalotengo-network
+
+networks:
+  yalotengo-network:
+    driver: bridge

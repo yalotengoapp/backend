@@ -1,18 +1,19 @@
-FROM maven:3.9.11-eclipse-temurin-21 AS build
+FROM maven:3.9.11-eclipse-temurin-24 AS build
 
-WORKDIR /workspace
+WORKDIR /src
 
-COPY pom.xml ./
+COPY . .
 
-RUN mvn -B dependency:go-offline
+RUN mvn dependency:go-offline
 
-COPY src ./src
+RUN mvn clean package -DskipTests
 
-RUN mvn -B clean package -DskipTests
-
-FROM eclipse-temurin:21-jre
-
-RUN groupadd -r yalotengo && useradd -r -g yalotengo -d /app -s /bin/bash yalotengo
+FROM eclipse-temurin:24-jre
 
 WORKDIR /app
 
+COPY --from=build /src/target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

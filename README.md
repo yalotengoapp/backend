@@ -135,7 +135,7 @@ docker compose logs db
 
 ### ✨ That’s it! Clone → configure .env → run docker compose up --build → open http://localhost:8080.
 
-## 👩‍💻 Develop by Bruna Sonda
+## 👩‍💻 Developed by Bruna Sonda
 
 ### https://github.com/brunasonda 
 

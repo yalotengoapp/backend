@@ -11,6 +11,7 @@
 	<groupId>com.ybytu</groupId>
 	<artifactId>yalotengo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>yalotengo</name>
 	<description>Backend for the YaLoTengo app</description>
 	<url/>
@@ -20,15 +21,27 @@
 	<developers>
 		<developer/>
 	</developers>
+	<modules>
+		<module>github</module>
+	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
 		<tag/>
 		<url/>
 	</scm>
+	//docker test
 	<properties>
 		<java.version>21</java.version>
 	</properties>
+	<profiles>
+		<profile>
+			<id>test</id>
+			<build>
+				<directory>/tmp/build</directory>
+			</build>
+		</profile>
+	</profiles>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

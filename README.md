@@ -101,24 +101,12 @@ spring.jpa.properties.hibernate.format_sql=true
 
 server.port=${SERVER_PORT}
 
-## 4. Build and run with Docker
-#### Build and start containers in background:
-docker compose up --build
+--------------
 
-### Check logs of the app:
-docker compose logs -f app
-
-## 5. Stop the application
-
-When you want to stop the containers:
-
-docker compose down
-
-
-## If you also want to remove the database volume and start with a clean state:
-
-docker compose down -v
-
+### Start MySQL (Docker example):
+docker run --name mysql-yalotengo -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=yalotengo -p 3306:3306 -d mysql:8.0
+### Run the application:
+./mvnw spring-boot:run
 
 ## 🛠️ Some possible troubleshooting
 
